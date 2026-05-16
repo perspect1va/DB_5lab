@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Главная</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .header {
+            background: white;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h2 {
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        .username {
+            color: #667eea;
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+        .badge {
+            display: inline-block;
+            background: #48bb78;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .menu {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        .menu a {
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        .btn-profile {
+            background: #667eea;
+            color: white;
+        }
+        .btn-profile:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+        .btn-admin {
+            background: #ed8936;
+            color: white;
+        }
+        .btn-admin:hover {
+            background: #dd6b20;
+            transform: translateY(-2px);
+        }
+        .btn-logout {
+            background: #e53e3e;
+            color: white;
+        }
+        .btn-logout:hover {
+            background: #c53030;
+            transform: translateY(-2px);
+        }
+        .info {
+            background: #edf2f7;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 30px;
+            color: #4a5568;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div style="max-width: 1200px; margin: 0 auto;">🖥️ Мой сайт</div>
+    </div>
+    <div class="container">
+        <div class="card">
+            <div class="badge">Кешируется на 30 секунд</div>
+            <h2>Привет,</h2>
+            <div class="username">{{ username }}!</div>
+            <p style="color: #666; margin-bottom: 20px;">Рады тебя видеть!</p>
+            
+            <div class="menu">
+                <a href="/profile" class="btn-profile">Мой профиль</a>
+                {% if is_admin %}
+                    <a href="/admin" class="btn-admin">Админ-панель</a>
+                {% endif %}
+                <a href="/logout" class="btn-logout">Выйти</a>
+            </div>
+            
+            <div class="info">
+                Статистика: Сегодня заходило 42 пользователя
+            </div>
+        </div>
+    </div>
+</body>
+</html>

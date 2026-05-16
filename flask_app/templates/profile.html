@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Мой профиль</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .header {
+            background: white;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #5a67d8;
+        }
+        .avatar {
+            text-align: center;
+            margin: 20px 0;
+        }
+        img {
+            max-width: 150px;
+            border-radius: 50%;
+            border: 3px solid #667eea;
+            padding: 3px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #667eea;
+        }
+        .file-input {
+            padding: 10px;
+            background: #f7fafc;
+            border: 1px dashed #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div style="max-width: 1200px; margin: 0 auto;">🖥️ Мой сайт</div>
+    </div>
+    <div class="container">
+        <div class="card">
+            <h2>Мой профиль</h2>
+            
+            <form method="POST" enctype="multipart/form-data">
+                <input type="text" name="name" value="{{ user.name }}" placeholder="Ваше имя">
+                
+                <div style="margin: 15px 0;">
+                    <label>Аватар:</label>
+                    <input type="file" name="avatar" accept="image/*" class="file-input">
+                </div>
+                
+                <button type="submit">💾 Сохранить изменения</button>
+            </form>
+            
+            {% if user.avatar_base64 %}
+                <div class="avatar">
+                    <h3>Ваш аватар:</h3>
+                    <img src="data:{{ user.avatar_mime }};base64,{{ user.avatar_base64 }}" alt="avatar">
+                </div>
+            {% else %}
+                <div class="avatar" style="color: #999;">
+                    <p>У вас пока нет аватара</p>
+                </div>
+            {% endif %}
+            
+            <div style="text-align: center;">
+                <a href="/dashboard" class="back-link">← Назад на главную</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
